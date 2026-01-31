@@ -1249,41 +1249,5 @@ document.addEventListener('DOMContentLoaded', () => {
 if ('serviceWorker' in navigator) {
     // Uncomment to enable service worker
     // navigator.serviceWorker.register('/sw.js');
-
-// --- Integrated Performance & Hiding Logic ---
-const playerContainer = document.getElementById('playerContainer');
-const video = document.getElementById('videoPlayer');
-let hideTimeout;
-
-function showUI() {
-    // Reveal everything
-    playerContainer.classList.remove('hide-ui');
-    
-    // Reset the invisibility timer
-    clearTimeout(hideTimeout);
-    
-    // Only start the countdown to hide if the video is actually playing
-    if (!video.paused) {
-        hideTimeout = setTimeout(() => {
-            playerContainer.classList.add('hide-ui');
-        }, 3000); // 3 seconds of peace
-    }
-}
-
-// Interactions for all devices
-playerContainer.addEventListener('mousemove', showUI);
-playerContainer.addEventListener('touchstart', showUI);
-playerContainer.addEventListener('mousedown', showUI);
-
-// Play/Pause State Management
-video.addEventListener('play', showUI);
-video.addEventListener('pause', () => {
-    // If we pause, keep the UI visible so you can see the buttons!
-    playerContainer.classList.remove('hide-ui');
-    clearTimeout(hideTimeout);
-});
-
-// Ensure UI is visible if the video ends
-video.addEventListener('ended', showUI);
 }
 
