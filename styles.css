@@ -1368,5 +1368,41 @@ body {
         opacity: 0;
         transform: translateY(-50%) scale(1);
     }
+   /* --- 1. Minimalist Performance (Save the Acer!) --- */
+   .bg-grid, .bg-glow, .bg-gradient { 
+       display: none !important; 
+   }
+   
+   body, .app-container {
+       background: #050508 !important; /* Flat black is your best friend */
+   }
+   
+   /* No blurs, just solid-ish colors for speed */
+   .loading-overlay, .speed-menu, .controls, .header {
+       backdrop-filter: none !important;
+       background: rgba(15, 15, 25, 0.98) !important;
+   }
+   
+   /* --- 2. Hiding Logic --- */
+   .player-container { cursor: default; }
+   
+   .player-container.hide-ui { 
+       cursor: none; 
+   }
+   
+   /* Everything that should vanish */
+   .player-container.hide-ui .controls,
+   .player-container.hide-ui .back-btn,
+   .player-container.hide-ui .header,
+   .player-container.hide-ui .buffer-indicator {
+       opacity: 0;
+       pointer-events: none;
+       transform: translateY(10px);
+   }
+   
+   /* Smooth transition for when they reappear */
+   .controls, .back-btn, .header {
+       transition: opacity 0.3s ease, transform 0.3s ease !important;
+   }
 }
 
